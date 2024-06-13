@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Validate email format
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(username)) {
+      setMessage('Please enter a valid email address.');
+      return;
+    }
+
+    // Validate password (at least 8 characters, one letter, one number)
+    const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!passwordPattern.test(password)) {
+      setMessage('Password must be at least 8 characters long and contain at least one letter and one number.');
+      return;
+    }
+
+    // Placeholder for actual authentication
+    if (username === 'admin@example.com' && password === 'Password123') {
+      setMessage('Login successful!');
+    } else {
+      setMessage('Invalid username or password.');
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label htmlFor="username">Email</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type="submit">Login</button>
+        <div id="message">{message}</div>
+      </form>
+    </div>
+  );
+}
+
+export default App;
