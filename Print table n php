@@ -1,0 +1,354 @@
+Create  a web page to print the following table:
+Code:-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Table</title>
+    <style>
+        table{
+            width: 50%;
+            margin: auto;
+        }
+        td{
+            text-align: center;
+        }
+        caption{
+            margin-bottom: 50px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+
+<body>
+    
+        <table border="2" >
+            <caption>List of Course-wise Subjects</caption>
+            <tr>
+                <td rowspan="2">SrNo.</td>
+                <td rowspan="2">Course</td>
+                <td rowspan="2">Subject</td>
+                <td colspan="2">Marks</td>
+                <td colspan="2">Category</td>
+                <td rowspan="2">Practical/Theory</td>
+            </tr>
+            <tr>
+                <td>Internal</td>
+                <td>External</td>
+                <td>Internal</td>
+                <td>External</td>
+            </tr>
+            <tr>
+                <td rowspan="4">1.</td>
+                <td rowspan="4">MBA</td>
+                <td>Management Accounting</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>Theory</td>
+            </tr>
+            <tr>
+                <td>Information Technology</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>T and P</td>
+            </tr>
+            <tr>
+                <td>Basics of Marketing</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>Theory</td>
+            </tr>
+            <tr>
+                <td>E-Commerce</td>
+                <td>50</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>-</td>
+                <td>Theory</td>
+            </tr>
+            <tr>
+                <td rowspan="6">2.</td>
+                <td rowspan="6">MCA</td>
+                <td>Visual Basic</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>T and P</td>
+            </tr>
+            <tr>
+                <td>Internet Technology</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>T and P</td>
+            </tr>
+            <tr>
+                <td>Network Technology</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>T and P</td>
+            </tr>
+            <tr>
+                <td>VB.Net</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>T and P</td>
+            </tr>
+            <tr>
+                <td>Linux</td>
+                <td>30</td>
+                <td>70</td>
+                <td>-</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>T and P</td>
+            </tr>
+            <tr>
+                <td>ISA</td>
+                <td>30</td>
+                <td>70</td>
+                <td><img src="tick.png" height="40px" width="40px"></td>
+                <td>-</td>
+                <td>T and P</td>
+            </tr>
+        </table>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+Create a crud application using php.
+Code:-
+App.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Application</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="nav">
+        <a href="app.php"><li>Home</li></a>
+        <a href="edit.php"><li>Edit</li></a>
+        <a href="delete.php"><li>Delete</li></a>
+        <a href="app.php"><li>About</li></a>
+    </div>
+    <div class="but">
+    <a href="edit.php"><button class="edit2">Add</button></a>
+    <a href="delete.php?delall="><button class="edit2" name="deleall">Delete All</button></a>
+    </div>
+    
+    <table class="studinfo1" border="2">
+        <tr>
+             <td>Name</td>
+             <td>Id</td>
+             <td>Course</td>
+             <td>Section</td>
+             <td>Edit</td>
+             <td>Delete</td>
+        </tr>
+        <?php
+           include "config.php";
+           $sql="SELECT * FROM `studinfo`";
+           $res=mysqli_query($con,$sql);
+           if(mysqli_num_rows($res)>0){
+             while($row=mysqli_fetch_assoc($res)){
+                echo "<tr>";
+                echo "<td>" . $row["SName"] . "</td>";
+                echo "<td>" . $row["Id"] . "</td>";
+                echo "<td>" . $row["Course"] . "</td>";
+                echo "<td>" . $row["Section"] . "</td>";
+                echo "<td>". "<a href='update.php?upid=".$row["Id"]."'><button class='edit' name='ed'>Edit</button></a>" . "</td>";
+                echo "<td>". "<a href='delete.php?delid=".$row["Id"]."'><button class='delete' name='del'>Delete</button></a>" . "</td>";
+                echo "</tr>";
+             }
+           }
+        ?>
+    </table>
+</body>
+</html>
+
+
+Config.php
+
+
+<?php
+      $con=mysqli_connect("localhost","root","gautam","classwork") or die("Connection is not made");
+?>
+
+
+Delete.php
+
+
+<?php
+       include "config.php";
+       if(isset($_GET['delall'])){
+        $sql="DELETE FROM `studinfo`";
+        $res=mysqli_query($con,$sql);
+        if($res){
+          header('location:app.php');
+        }
+       }
+?>
+<?php
+       include "config.php";
+       if(isset($_GET['delid'])){
+          $id=$_GET['delid'];
+          $sql="DELETE FROM `studinfo` WHERE ID=$id";
+          $res=mysqli_query($con,$sql);
+          if($res){
+            header('location:app.php');
+          }
+          else{
+            die(mysqli_error($con));
+          }
+       }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete</title>
+</head>
+<body>
+    
+</body>
+</html>
+Edit.php
+
+
+<?php
+     include "config.php";
+     if(isset($_POST['submit'])){
+        $name=$_POST['sname'];
+        $id=$_POST['sid'];
+        $course=$_POST['scourse'];
+        $sec=$_POST['ssec'];
+        $sql2="SELECT * FROM `studinfo`";
+        $res=mysqli_query($con,$sql2);
+        $t=0;
+        if(mysqli_num_rows($res)!=0){
+            $sql1="SELECT Id FROM `studinfo` WHERE Id='$_POST[sid]'";
+            $res1=mysqli_query($con,$sql1);
+            if($res1){
+                if(mysqli_num_rows($res1)>0){
+                    $fetch=mysqli_fetch_assoc($res1);
+                    if($fetch['Id']==$_POST['sid']){
+                        $t++;
+                        echo  "<script>alert('The entered id already exists');</script>";
+                    }
+                }
+            }
+        }
+        if($t==0){
+            $sql="INSERT INTO `studinfo` (SName,Id,Course,Section) values('$name','$id','$course','$sec')";
+                $res=mysqli_query($con,$sql);
+                echo "<p class='dinsert'>Data Inserted Succesfully</p>";
+                header('location:app.php');
+            }   
+     }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="edit1">Edit your Data</h1>
+    <form action="edit.php" method="post" class="editing">
+        <input type="text" name="sname" placeholder="Enter your name" class="boxes" required>
+        <br><br>
+        <input type="number" name="sid" placeholder="Enter your id" class="boxes" required>
+        <br><br>
+        <input type="text" name="scourse" placeholder="Enter your course" class="boxes" required>
+        <br><br>
+        <input type="section" name="ssec" placeholder="Enter your section" class="boxes" required>
+        <br><br>
+        <button name="submit" class="sub">Save</button>
+    </form>
+    <a href="app.php"><button class="sub1">back</button></a>
+</body>
+</html>
+
+
+Update.php
+
+
+<?php
+       include "config.php";
+    if(isset($_GET['upid'])){
+       $sql="SELECT * FROM `studinfo` WHERE Id=$_GET[upid]";
+       $res=mysqli_query($con,$sql);
+       $row=mysqli_fetch_assoc($res);
+       $name=$row['SName'];
+       $id=$row['Id'];
+       $course=$row['Course'];
+       $sec=$row['Section'];
+    }
+    if(isset($_POST['submit'])){
+        $name=$_POST['sname'];
+        $id1=$_POST['sid'];
+        $course=$_POST['scourse'];
+        $sec=$_POST['ssec'];
+        $sql="UPDATE `studinfo` SET SName='$name',Id=$id1,Course='$course',Section='$sec' WHERE Id=$id1";
+        $res=mysqli_query($con,$sql);
+        if($res){
+             header('location:app.php');
+        }
+       }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <h1 class="edit1">Edit your Data</h1>
+    <form action="update.php" method="post" class="editing">
+        <input type="text" name="sname" placeholder="Enter your name" class="boxes" value="<?php echo $name; ?>" required>
+        <br><br>
+        <input type="number" name="sid" placeholder="Enter your id" class="boxes" value="<?php echo $id; ?>"  required>
+        <br><br>
+        <input type="text" name="scourse" placeholder="Enter your course" class="boxes" value="<?php echo $course; ?>" required>
+        <br><br>
+        <input type="section" name="ssec" placeholder="Enter your section" class="boxes" value="<?php echo $sec; ?>" required>
+        <br><br>
+        <button name="submit" class="sub">Save</button>
+    </form>
+    <a href="app.php"><button class="sub1">back</button></a>
+</body>
+</html>
+
+
